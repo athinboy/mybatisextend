@@ -18,8 +18,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.fgq.query.mapper.CommonMapper;
 
 
@@ -46,7 +46,7 @@ public class CommonQueryTest {
         {
 
 
-            Logger logger = LogManager.getLogger(CommonQueryTest.class);
+            Logger logger = LoggerFactory.getLogger(CommonQueryTest.class);
 
             logger.error("111111111111111111111111111111111111111111111111111111");
 

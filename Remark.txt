@@ -1,0 +1,54 @@
+参考项目：
+1、
+http://blog.csdn.net/isea533/article/details/41457529
+http://git.oschina.net/free/Mapper
+
+
+
+1、多表连接类和单表类区分：
+   具有MTDto注解就是多表关联类。否则都是单表类。
+2、
+
+
+查询谓词：=,<>,like,not like ,>,>=,<,<=,between,not between,in ,not in，is null,is not null
+
+暂时不支持Between，通过<,>,<=,>=实现。
+
+目的：
+1、单表select，delete,update,insert.
+      SelectByPrimaryKey
+      Select
+      Count
+      UpdateByPrimary
+      Update
+      DeleteByPrimary
+      Delete
+      Insert
+2、多表（存在或者不存在外键关联）select,delete,update,insert.
+3、查询谓词：=,<>,like,not like ,>,>=,<,<=,between,not between,in ,not in，is null,is not null
+4、减少对mybatis Mpper XML配置文件的依赖和维护。
+5、每行有个更新时间，每次都要更新此值。
+6、根据指定列产生表名/库名，支持分库分表。（放弃）
+
+设计：
+
+
+1、多表连接类和单表类区分：
+   具有MTDto注解就是多表关联类。否则都是单表类。
+2、
+
+
+
+
+ 映射信息：（s后缀表示列表）
+    类
+    表名s
+    别名
+    结果列s
+    条件列s
+    列：
+    主键
+    外键
+    可为空
+    java类型
+    jdbctype

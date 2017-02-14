@@ -20,9 +20,9 @@ public class DtoMetaReflect {
 
     private static Map<String, DtoTypeInfo> typecache = Collections.synchronizedMap(new HashMap<String, DtoTypeInfo>());
 
-    public static void Reflect(Type type) {
-        if (false == typecache.containsKey(type.getTypeName())) {
-            typecache.put(type.getTypeName(), TrimType(type));
+    public static void Reflect(Class type) {
+        if (false == typecache.containsKey(type.getName())) {
+            typecache.put(type.getName(), TrimType(type));
         }
     }
 

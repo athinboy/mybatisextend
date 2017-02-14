@@ -11,7 +11,7 @@ import com.mysql.jdbc.ConnectionImpl;
 import com.mysql.jdbc.JDBC4Connection;
 import com.mysql.jdbc.JDBC4MySQLConnection;
 //import org.apache.commons.lang.time.StopWatch;
-import com.sun.javafx.Logging;
+
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.dbcp.DataSourceConnectionFactory;
 import org.apache.commons.lang3.time.StopWatch;
