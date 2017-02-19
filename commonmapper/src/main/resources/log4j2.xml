@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" strict="true" name="XMLConfigTest"
+               packages="org.apache.logging.log4j.test">
+    <Properties>
+        <Property name="filename">target/test.log</Property>
+        <Property name="rootLogger">warn</Property>
+    </Properties>
+
+    <Loggers>
+        <Root level="warn">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+        <!--<logger name="org.apache.ibatis" level="info">-->
+        <!--</logger>-->
+        <!--<logger name="org.apache.mybatis" level="info">-->
+        <!--</logger>-->
+        <logger name="java.sql.Connection" level="debug">
+        </logger>
+        <logger name="java.sql.PreparedStatement" level="debug">
+        </logger>
+        <logger name="java.sql.ResultSet" level="debug">
+        </logger>
+        <logger name="cn.athinbly" level="debug">
+        </logger>
+        <logger name="test" level="debug">
+        </logger>
+        <logger name="org.mybatis.example" level="debug">
+        </logger>
+    </Loggers>
+
+    <Appenders>
+        <Appender type="Console" name="STDOUT">
+            <Layout type="PatternLayout" pattern="%c-%d-%t-%m%n"/>
+            <Filters></Filters>
+        </Appender>
+        <Appender type="Console" name="FLOW">
+            <Layout type="PatternLayout" pattern="%logger--%C{1}.%M %m %ex%n"/>
+            <Filters></Filters>
+        </Appender>
+
+    </Appenders>
+
+
+
+ </Configuration>
