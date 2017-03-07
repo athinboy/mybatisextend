@@ -7,8 +7,10 @@ import java.lang.annotation.*;
  * Created by fenggqc on 2016/12/18.
  */
 @Documented
+@Deprecated
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = ElementType.FIELD)
-public @interface FieldTableName {
+public @interface FieldTableName  {
     String value();
+
 }

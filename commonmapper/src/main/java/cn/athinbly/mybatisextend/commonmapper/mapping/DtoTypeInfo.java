@@ -1,7 +1,6 @@
 package cn.athinbly.mybatisextend.commonmapper.mapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * dto¿‡–≈œ¢°£
@@ -9,9 +8,35 @@ import java.util.List;
  */
 public class DtoTypeInfo {
 
-    private List<Table> tables=new ArrayList<Table>();
-    private List<DtoFieldBase> fields=new ArrayList<DtoFieldBase>();
+    private Class dtoClass=null;
 
+
+    private List<DtoFieldInfo> fields=new ArrayList<DtoFieldInfo>();
+
+    /**
+     * table name ,especially for insert ,update ,delete.
+     */
+    private String tableName="";
+
+
+
+
+    /**
+     * the query sql.like 'select a,b from d '
+     */
+    private String selectSqlStr="";
+
+    /**
+     * the cache of  insert sql.
+     */
+    private static Map<String,String> insertSqlCache= Collections.synchronizedMap( new HashMap<String, String>());
+
+
+
+    public  DtoTypeInfo(Class dtoClass){
+        this.dtoClass=dtoClass;
+        //Collections.sort(this.fields);
+    }
 
 
 
@@ -23,6 +48,31 @@ public class DtoTypeInfo {
 
     //region Getter And Setter
 
+
+    public List<DtoFieldInfo> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<DtoFieldInfo> fields) {
+        this.fields = fields;
+    }
+
+    public static Map<String, String> getInsertSqlCache() {
+        return insertSqlCache;
+    }
+
+    public static void setInsertSqlCache(Map<String, String> insertSqlCache) {
+        DtoTypeInfo.insertSqlCache = insertSqlCache;
+    }
+
+    public String getSelectSqlStr() {
+        return selectSqlStr;
+    }
+
+    public void setSelectSqlStr(String selectSqlStr) {
+        this.selectSqlStr = selectSqlStr;
+    }
+
     public Boolean getIsSimpleTable() {
         return isSimpleTable;
     }
@@ -31,14 +81,20 @@ public class DtoTypeInfo {
         this.isSimpleTable = isSimpleTable;
     }
 
-    public List<Table> getTables() {
-        return tables;
+
+
+
+    public String getTableName() {
+
+        if (this.tableName.length()==0){
+            return this.dtoClass.getSimpleName();
+        }
+        return tableName;
     }
 
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
-
 
     // endregion
 

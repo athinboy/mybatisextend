@@ -4,14 +4,13 @@ import java.lang.annotation.*;
 
 /**
  *
- * Created by fenggqc on 2017/2/16.
+ * indicate the field will be setted with current time when insert or update .
+ *
+ * Created by fenggqc on 2017/2/24.
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = ElementType.FIELD)
-public @interface ComputerField {
-
-    //region Getter And Setter
-    // endregion
+public @interface AlwayNow {
 
 }

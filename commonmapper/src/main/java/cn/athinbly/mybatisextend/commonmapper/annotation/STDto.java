@@ -10,5 +10,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = ElementType.TYPE)
 public @interface STDto {
-    String  TableName();
+    String  TableName() default "";
 }

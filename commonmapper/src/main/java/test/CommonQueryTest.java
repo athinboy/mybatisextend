@@ -3,6 +3,7 @@ package test;
 import java.io.InputStream;
 import java.util.List;
 
+import cn.athinbly.mybatisextend.commonmapper.mapper.CommonMapper;
 import org.apache.ibatis.io.Resources;
 
 
@@ -63,13 +64,29 @@ public class CommonQueryTest {
 
              StudentMapper ui2Mapper = sqlSession.getMapper(StudentMapper.class);
             Student student;
-            student = ui2Mapper.SelectOne(1);
+            //student = ui2Mapper.SelectOne(1);
 
 
-            //          CommonMapper<UI2> commonMapper = sqlSession.getMapper(CommonMapper.class);
-            //       Object o  = commonMapper.SelectByPrimaryKey(ui2);
+            student=new Student();
+            CommonMapper<Student> commonMapper = sqlSession.getMapper(CommonMapper.class);
+
+            student.setId(1);
+            student.setName("name");
+            student.setMale(false);
+            commonMapper.Insert(student);
 
 
+            student.setMale(null);
+            commonMapper.Insert(student);
+
+
+
+
+
+            //Object o = commonMapper.SelectByPrimaryKey(student);
+
+
+            sqlSession.commit();
             sqlSession.close();
 
 

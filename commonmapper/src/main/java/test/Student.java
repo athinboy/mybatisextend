@@ -1,8 +1,11 @@
 package test;
 
+import cn.athinbly.mybatisextend.commonmapper.annotation.STDto;
+
 /**
  * Created by fenggqc on 2017/2/18.
  */
+@STDto()
 public class Student {
 
 

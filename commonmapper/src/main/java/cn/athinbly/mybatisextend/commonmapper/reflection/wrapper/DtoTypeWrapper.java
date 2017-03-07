@@ -1,6 +1,8 @@
 package cn.athinbly.mybatisextend.commonmapper.reflection.wrapper;
 
 import cn.athinbly.mybatisextend.commonmapper.annotation.MTDto;
+import cn.athinbly.mybatisextend.commonmapper.annotation.SelectSql;
+import cn.athinbly.mybatisextend.commonmapper.annotation.TableName;
 import cn.athinbly.mybatisextend.commonmapper.mapping.DtoTypeInfo;
 
 import java.lang.annotation.Annotation;
@@ -17,19 +19,26 @@ public class DtoTypeWrapper {
 
     private static Map<String, DtoTypeInfo> typecache = Collections.synchronizedMap(new HashMap<String, DtoTypeInfo>());
 
-    public static void Reflect(Class type) {
+    static void Reflect(Class type) {
         if (false == typecache.containsKey(type.getName())) {
             typecache.put(type.getName(), TrimType(type));
         }
+
     }
 
 
-    private static DtoTypeInfo TrimType(Type type) {
-        DtoTypeInfo result = new DtoTypeInfo();
+    public static DtoTypeInfo TrimType(Class type) {
 
-        Annotation[] annotations = type.getClass().getAnnotations();
 
-        List<String>allTableNames =new ArrayList<String>();
+        if (true == typecache.containsKey(type.getName())) {
+            return typecache.get(type.getName());
+        }
+
+        DtoTypeInfo result = new DtoTypeInfo(type);
+
+        Annotation[] annotations = type.getAnnotations();
+
+        List<String> allTableNames = new ArrayList<String>();
 
         boolean simpletable = IsMultiJoinDto(annotations) == false;
 
@@ -40,17 +49,21 @@ public class DtoTypeWrapper {
         result.setIsSimpleTable(simpletable);
 
         for (Annotation annotation : annotations) {
-
-        }
-        Field[] fields = type.getClass().getFields();
-        for (Field field : fields) {
-            annotations = field.getAnnotations();
-            for (Annotation annotation : annotations) {
+            if (SelectSql.class.isAssignableFrom(annotation.annotationType())) {
+                result.setSelectSqlStr(((SelectSql) annotation).Value());
 
             }
+            if (TableName.class.isAssignableFrom(annotation.annotationType())) {
+                result.setTableName(((TableName) annotation).Value());
+            }
+
         }
 
-
+        Field[] fields = type.getDeclaredFields();
+        for (Field field : fields) {
+            result.getFields().add(DtoFieldWrapper.WrapperFiled(field, result));
+        }
+        typecache.put(type.getName(), result);
         return result;
 
     }

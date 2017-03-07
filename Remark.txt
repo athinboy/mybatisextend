@@ -9,6 +9,8 @@ http://git.oschina.net/free/Mapper
    具有MTDto注解就是多表关联类。否则都是单表类。
 2、
 
+3、Identifier quote characters is not support  e.g. `(backtick ,mysql),[](bracket,sqlserver )。
+
 
 查询谓词：=,<>,like,not like ,>,>=,<,<=,between,not between,in ,not in，is null,is not null
 
@@ -24,7 +26,7 @@ http://git.oschina.net/free/Mapper
       DeleteByPrimary
       Delete
       Insert
-2、多表（存在或者不存在外键关联）select,delete,update,insert.
+2、多表（存在或者不存在外键关联）select,暂定只支持通过SelectSql实现。
 3、查询谓词：=,<>,like,not like ,>,>=,<,<=,between,not between,in ,not in，is null,is not null
 4、减少对mybatis Mpper XML配置文件的依赖和维护。
 5、每行有个更新时间，每次都要更新此值。
